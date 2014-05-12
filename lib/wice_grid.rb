@@ -286,20 +286,22 @@ module Wice
         @resultset = if self.output_csv? || all_record_mode?
           # @relation.find(:all, @ar_options)
           @relation.
-            includes(@ar_options[:include]).
-            joins(   @ar_options[:joins]).
-            order(   @ar_options[:order]).
-            where(   @ar_options[:conditions])
+            includes(  @ar_options[:include]).
+            joins(     @ar_options[:joins]).
+            order(     @ar_options[:order]).
+            where(     @ar_options[:conditions]).
+            references(@ar_options[:include])
 
         else
           # p @ar_options
           @relation.
-            page(    @ar_options[:page]).
-            per(     @ar_options[:per_page]).
-            includes(@ar_options[:include]).
-            joins(   @ar_options[:joins]).
-            order(   @ar_options[:order]).
-            where(   @ar_options[:conditions])
+            page(      @ar_options[:page]).
+            per(       @ar_options[:per_page]).
+            includes(  @ar_options[:include]).
+            references(@ar_options[:include]).
+            joins(     @ar_options[:joins]).
+            order(     @ar_options[:order]).
+            where(     @ar_options[:conditions])
 
         end
       end
